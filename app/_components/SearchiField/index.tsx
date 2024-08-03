@@ -14,12 +14,13 @@ function SearchFieldComponent() {
     const q = e.currentTarget.elements.namedItem("q");
     if (q instanceof HTMLInputElement) {
       const params = new URLSearchParams();
-      params.set(`/news/search?${params.toString()}`);
+      params.set("q", q.value.trim());
+      router.push(`/news/search?${params.toString()}`);
     }
   };
 
   return (
-    <from onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <label className={styles.search}>
         <Image
           src="/search.svg"
@@ -36,9 +37,10 @@ function SearchFieldComponent() {
           className={styles.searchInput}
         />
       </label>
-    </from>
+    </form>
   );
 }
+
 export default function SearchField() {
   return (
     <Suspense>
